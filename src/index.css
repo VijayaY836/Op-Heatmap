@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: #f6f7fb;
+  color: #0e2a2e;
+  font-family: 'Manrope', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: 'Fraunces', serif;
+  font-optical-sizing: auto;
+}
+
+/* Leaflet default marker icons are broken under bundlers; we render our own
+   CircleMarkers instead, so no icon fix is needed. Keep the map's own chrome
+   quiet so our palette leads. */
+.leaflet-container {
+  background: #eef1f6;
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 32px rgba(14, 42, 46, 0.18);
+}
+
+/* Signature: the ledger number itself breathes, like a counter that is
+   quietly always running, whether you're watching or not. */
+@keyframes ledger-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.ledger-live {
+  animation: ledger-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ledger-live {
+    animation: none;
+  }
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #0f6e6a;
+  outline-offset: 2px;
+}

@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/claim-assistant.js": {
+      "maxDuration": 20
+    }
+  }
+}
