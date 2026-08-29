@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { MapContainer, TileLayer, GeoJSON, CircleMarker, Tooltip, useMap, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Tooltip, useMap, useMapEvents } from 'react-leaflet';
 import 'leaflet.heat';
 import * as L from 'leaflet';
 import { formatINR } from '../utils/formatCurrency';
-import { indiaSimplifiedBoundary } from '../data/indiaBoundaries';
 
 const INDIA_CENTER = [21.5, 79.0];
 const INDIA_ZOOM = 5;
@@ -58,21 +57,6 @@ function HeatmapLayer({ localities, maxUnclaimed }) {
   return null;
 }
 
-function IndiaBoundary() {
-  return (
-    <GeoJSON
-      data={indiaSimplifiedBoundary}
-      style={() => ({
-        color: '#0E2A2E',
-        weight: 1.5,
-        fillColor: '#0F6E6A',
-        fillOpacity: 0.03,
-        dashArray: '4, 4',
-      })}
-    />
-  );
-}
-
 function ViewportWatcher({ localities, onVisibleChange }) {
   const map = useMap();
 
@@ -115,8 +99,7 @@ export default function MapView({ localities, selectedId, onSelect, onVisibleCha
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         maxNativeZoom={18}
       />
-      <IndiaBoundary />
-      <HeatmapLayer localities={localities} maxUnclaimed={maxUnclaimed} />
+        <HeatmapLayer localities={localities} maxUnclaimed={maxUnclaimed} />
       <ViewportWatcher localities={localities} onVisibleChange={onVisibleChange} />
       {localities.map((loc) => {
         const isSelected = loc.id === selectedId;
